@@ -6,10 +6,11 @@
 #SBATCH --mem=100G
 #SBATCH -o RNAseq-%x-%j.out
 
-##MAKESURE raw_data DIRECTORY IS INSIDE $ProjectDir AND IT HAS SAMPLE DIRECTORIES CONTAINNING FASTQ FILES INSIDE THEM.
+##MAKESURE raw_data DIRECTORY IS INSIDE $ProjectDir AND IT HAS SAMPLE DIRECTORIES CONTAINING FASTQ FILES INSIDE THEM.
 ## ALSO WITHIN ProjectDir MAKE A script DIRECTORY WITH known_splice_sites.txt EXTRACTED FROM GFF OR GTF FILE
+## Change path of HISAT2 index if required, The one mentioned in the script is for Mouse.
 
-ProjectDir=$1
+ProjectDir=$2
 
 mkdir -p ${ProjectDir}/tmp
 

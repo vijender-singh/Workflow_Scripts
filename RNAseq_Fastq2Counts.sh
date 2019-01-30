@@ -1,4 +1,4 @@
-```sh
+
 #!/bin/bash
 #SBATCH -J RNAseq
 #SBATCH -c 8
@@ -128,4 +128,4 @@ module load htseq/0.11.0
 htseq-count -s no -r pos -t exon -i gene_id -f bam ${ProjectDir}/mapping/${sample}_dup_removed_sort.bam /isg/shared/databases/alignerIndex/animal/mus_musculus/Mus_musculus.GRCm38.93.gtf > ${ProjectDir}/counts/${sample}.counts
 
 module rm htseq/0.11.0
-```
+

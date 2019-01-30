@@ -1,10 +1,11 @@
+```sh
 #!/bin/bash
 #SBATCH -J RNAseq
 #SBATCH -c 8
 #SBATCH -p general
 #SBATCH --qos=general
 #SBATCH --mem=100G
-#SBATCH -o RNAseq-%x-%j.out
+#SBATCH -o %x-%j.out
 
 ##MAKESURE raw_data DIRECTORY IS INSIDE $ProjectDir AND IT HAS SAMPLE DIRECTORIES CONTAINING FASTQ FILES INSIDE THEM.
 ## ALSO WITHIN ProjectDir MAKE A script DIRECTORY WITH known_splice_sites.txt EXTRACTED FROM GFF OR GTF FILE
@@ -127,3 +128,4 @@ module load htseq/0.11.0
 htseq-count -s no -r pos -t exon -i gene_id -f bam ${ProjectDir}/mapping/${sample}_dup_removed_sort.bam /isg/shared/databases/alignerIndex/animal/mus_musculus/Mus_musculus.GRCm38.93.gtf > ${ProjectDir}/counts/${sample}.counts
 
 module rm htseq/0.11.0
+```

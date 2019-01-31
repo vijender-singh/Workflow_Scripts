@@ -6,9 +6,21 @@
 #SBATCH --qos=general
 #SBATCH --mem=100G
 #SBATCH -o %x-%j.out
+if [ $1 == "-h"];then
+	echo " Syntax : sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse> \
+	-s SampleName (Read the project directory set up below) \
+	-p Absolute Path to the project directory \
+	-m human|mouse At present the script supports these two. For any other species set ${IndexPath} in script \
+	Directory Set Up:
+	ProjectDirectory-
+			|-raw_data
+				|-samplename(Directory)
+					|-sampleName_
+					|
+
+
 
 mkdir -p ${ProjectDir}/tmp
-
 export TMPDIR=${ProjectDir}/tmp
 
 ##MAKESURE raw_data DIRECTORY IS INSIDE $ProjectDir AND IT HAS SAMPLE DIRECTORIES CONTAINING FASTQ FILES INSIDE THEM.
@@ -33,7 +45,7 @@ elif [ $source == mouse ];then
 	IndexPrefix="${IndexPath}/Mus_musculus"
 else
 	echo " Source information not provided.  Set 3rd argument to human or mouse."  
-	echo "IF EITHER OF THEM IS NOT CORRECT OPEN THE FILE AND SET THE PATH TO INDEX LOCATION. "
+	echo "IF EITHER OF THEM IS NOT CORRECT then SET THE PATH TO INDEX LOCATION (down in CMD9). "
 	exit 1
 fi
 
@@ -54,6 +66,9 @@ cd ${ProjectDir}/raw_data/${sample}
 OUT="$result_dir"/logs/${sample}_OUT
 source "$result_dir"/logs/${sample}_log_trace
 
+NumberOfFiles=`ls | wc -l`
+
+if [ $NumberOfFiles -eq 8 ];then
 #TEMPLATE
 ##########################################################################################################
 #if [ CMD1 -eq "OK" ];then
@@ -69,33 +84,34 @@ source "$result_dir"/logs/${sample}_log_trace
 ##########################################################################################################
 
 #CMD1
-if [ CMD1 -eq "OK" ];then
-	echo  "Uncompressing fastq files was successfully executed in previous run " >> ${OUT}
-else
-	gunzip *.fastq.gz
-	if [ $? -eq 0 ]; then
-    		sed -i -e 's/CMD1=FAIL/CMD1=OK/g' "$result_dir"/log_files/"$result_dir"/logs/${sample}_log_trace
+	if [ CMD1 -eq "OK" ];then
+		echo  "Uncompressing fastq files was successfully executed in previous run " >> ${OUT}
 	else
-    		echo "CMD1, Uncompressing fastq files, FAILED CHECK THE SLURM OUTPUT FOR DETAILS" >>"$result_dir"/logs/${sample}_OUT
-		exit 1
+		gunzip *.fastq.gz
+		if [ $? -eq 0 ]; then
+    			sed -i -e 's/CMD1=FAIL/CMD1=OK/g' "$result_dir"/log_files/"$result_dir"/logs/${sample}_log_trace
+		else
+    			echo "CMD1, Uncompressing fastq files, FAILED CHECK THE SLURM OUTPUT FOR DETAILS" >>"$result_dir"/logs/${sample}_OUT
+			exit 1
+		fi
 	fi
-fi
 
+		`
 #CMD2
 ##########################################################################################################
-if [ CMD2 -eq "OK" ];then
-	echo  "Merging of R1 reads was successfully executed in previous run " >> ${OUT}
-else
-	cat ${sample}_S*_L001_R1_001.fastq ${sample}_S*_L002_R1_001.fastq ${sample}_S*_L003_R1_001.fastq ${sample}_S*_L004_R1_001.fastq >> ${sample}_R1.fastq
-	if [ $? -eq 0 ]; then
-    		sed -i -e 's/CMD2=FAIL/CMD2=OK/g' "$result_dir"/log_files/"$result_dir"/logs/${sample}_log_trace
+	if [ CMD2 -eq "OK" ];then
+		echo  "Merging of R1 reads was successfully executed in previous run " >> ${OUT}
 	else
-    		echo "CMD2, Mergeing R1, FAILED CHECK THE SLURM OUTPUT FOR DETAILS" >>"$result_dir"/logs/${sample}_OUT
-		exit 1
+		cat ${sample}_S*_L001_R1_001.fastq ${sample}_S*_L002_R1_001.fastq ${sample}_S*_L003_R1_001.fastq ${sample}_S*_L004_R1_001.fastq >> ${sample}_R1.fastq
+		if [ $? -eq 0 ]; then
+    			sed -i -e 's/CMD2=FAIL/CMD2=OK/g' "$result_dir"/log_files/"$result_dir"/logs/${sample}_log_trace
+		else
+    			echo "CMD2, Mergeing R1, FAILED CHECK THE SLURM OUTPUT FOR DETAILS" >>"$result_dir"/logs/${sample}_OUT
+			exit 1
+		fi
 	fi
-fi
 ##########################################################################################################
-
+fi
 
 #CMD3
 ##########################################################################################################

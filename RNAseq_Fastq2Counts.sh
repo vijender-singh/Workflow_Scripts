@@ -11,26 +11,32 @@ if [ $1 == "-h"];then
 	-s SampleName (Read the project directory set up below) \
 	-p Absolute Path to the project directory \
 	-m human|mouse At present the script supports these two. For any other species set ${IndexPath} in script \
-	Directory Set Up:
-	ProjectDirectory-
-			|-raw_data
-				|-samplename(Directory)
-					|-sampleName_
-					|
-
-
-
+	Directory Set Up: Below is the layout of the directory structure.  \
+	Inside the project directory there is directory raw_data containg directories corresponding for each sample 	\
+	sample directories should have fastq files \
+	ProjectDirectory	\
+		|-raw_data	\
+			|-samplename1(Directory)	\
+			|	|-fastq files	\
+			|-samplename2(Directory)	\
+				|-fastq files	\
+	
+	DONOT PUT ALL FASTQ FILES IN SAME DIRECTORY"
+else
+	while getopts u:d:p:f: option
+	do
+	case "${option}"
+	in
+	s) sample=${OPTARG};;
+	p) ProjectDir=${OPTARG};;
+	m) source=${OPTARG};;
+	esac
+	done
+fi
+	
+	
 mkdir -p ${ProjectDir}/tmp
 export TMPDIR=${ProjectDir}/tmp
-
-##MAKESURE raw_data DIRECTORY IS INSIDE $ProjectDir AND IT HAS SAMPLE DIRECTORIES CONTAINING FASTQ FILES INSIDE THEM.
-## ALSO WITHIN ProjectDir MAKE A script DIRECTORY WITH known_splice_sites.txt EXTRACTED FROM GFF OR GTF FILE
-## Change path of HISAT2 index if required, The one mentioned in the script is for Mouse.
-sample="$1"
-
-ProjectDir="$2"
-
-source="$3"
 
 hostname
 
@@ -102,7 +108,8 @@ if [ $NumberOfFiles -eq 8 ];then
 	if [ CMD2 -eq "OK" ];then
 		echo  "Merging of R1 reads was successfully executed in previous run " >> ${OUT}
 	else
-		cat ${sample}_S*_L001_R1_001.fastq ${sample}_S*_L002_R1_001.fastq ${sample}_S*_L003_R1_001.fastq ${sample}_S*_L004_R1_001.fastq >> ${sample}_R1.fastq
+		#cat ${sample}_S*_L001_R1_001.fastq ${sample}_S*_L002_R1_001.fastq ${sample}_S*_L003_R1_001.fastq ${sample}_S*_L004_R1_001.fastq >> ${sample}_R1.fastq
+		cat `ls *.R1*.fastq | sort -` >> ${sample}_R1.fastq
 		if [ $? -eq 0 ]; then
     			sed -i -e 's/CMD2=FAIL/CMD2=OK/g' "$result_dir"/log_files/"$result_dir"/logs/${sample}_log_trace
 		else
@@ -118,7 +125,8 @@ fi
 if [ CMD3 -eq "OK" ];then
 	echo  "Merging of R2 reads was successfully executed in previous run " >> ${OUT}
 else
-	cat ${sample}_S*_L001_R2_001.fastq ${sample}_S*_L002_R2_001.fastq ${sample}_S*_L003_R2_001.fastq ${sample}_S*_L004_R2_001.fastq >> ${sample}_R2.fastq
+	#cat ${sample}_S*_L001_R2_001.fastq ${sample}_S*_L002_R2_001.fastq ${sample}_S*_L003_R2_001.fastq ${sample}_S*_L004_R2_001.fastq >> ${sample}_R2.fastq
+	cat `ls *.R2*.fastq | sort -` >> ${sample}_R2.fastq
 	if [ $? -eq 0 ]; then
     		sed -i -e 's/CMD3=FAIL/CMD3=OK/g' "$result_dir"/log_files/"$result_dir"/logs/${sample}_log_trace
 	else

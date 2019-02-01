@@ -12,6 +12,8 @@ while test $# -gt 0; do
         case "$1" in
                 -h|--help)
                         echo " "
+			echo "If the script fails to run to the end, look for the error correct the erreo and rerun the script."
+			echo "The script will rerun from the failed step than from the start.   ENJOY.."
 			echo " Syntax :"
 			echo "		sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse> "
 			echo " "
@@ -185,7 +187,7 @@ fi
 
 mkdir -p ${ProjectDir}/merged_fastq
 
-mv ${sample}_R?.fastq ${ProjectDir}/merged_fastq/
+mv ${sample}_R?.fastq ${ProjectDir}/merged_fastq/ 2>/dev/null
 
 cd ${ProjectDir}/merged_fastq
 
@@ -455,5 +457,3 @@ echo "" >> ${ProjectDir}/logs/${sample}_OUT
 echo "30-JAN-2009, TAKEN : French action thriller film , Morel P. et. al.,:25mil:226.8mil " >> ${ProjectDir}/logs/${sample}_OUT
 echo "==========================================================================" >> ${ProjectDir}/logs/${sample}_OUT
 echo "just kidding : Modified from above source" >> ${ProjectDir}/logs/${sample}_OUT
-
-

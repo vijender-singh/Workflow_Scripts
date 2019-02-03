@@ -15,9 +15,9 @@ or
 
 **OPTIONS** <br/>
 ```sh
-#                -s SampleName Please read the the project directory set up below<br/>
-#                -p Absolute Path to the project directory<br/>
-#                -m human or mouse : At presesent the script supports only these two. For any other species set IndexPath variable in script<br/>
+#         -s        SampleName Please read the the project directory set up below
+#         -p        Absolute Path to the project directory
+#         -m        human or mouse : At presesent the script supports only these two. For any other species set IndexPath variable in script
  ```               
 *If the script fails due to errors, please check the cluster error/output files and also ProjectDirectory/logs/sample_log_trace file for errors*.<br/>
 *After correcting for error resubmit the script and it should run from the step where it failed then from the start .* <br/>

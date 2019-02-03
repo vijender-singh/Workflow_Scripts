@@ -7,6 +7,7 @@ help file : `sh RNAseq_Fastq2Counts.sh -h`
 **Syntax**<br/>
          ` sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse>`
 <br/>
+
 *If the script fails due to errors, please check the cluster error/output files and also ProjectDirectory/logs/sample_log_trace file for errors*.<br/>
 *After correcting for error resubmit the script and it should run from the step where it failed then from the start .* <br/>
 <br/>
@@ -19,16 +20,16 @@ help file : `sh RNAseq_Fastq2Counts.sh -h`
 
 ### Script Purpose
 The script takes fastq files and outputs the counts file.  The steps are listed below<br/>
-        1) Merging fastq files. Only executes if the **R1** read files are split into 4 based on lanes (L001, L002, L003 and L004)<br/>
-        2) `FASTQC` :  Runs fastqc for quality check<br/>
-        3) `Sickle` : Trimms the reads based on quality and length of reads,[Deafult q = 25  and length (-l)=45.<br/>
-        4) `FASTQC` : Quality check, Post sickle Processing<br/>
-        5) `HISAT2` : Mapping reads to reference.<br/>
-        5) `htseq-count` : Count reads/fragments corresponding to features in GTF file.<br/>
+        1. Merging fastq files. Only executes if the **R1** read files are split into 4 based on lanes (L001, L002, L003 and L004)<br/>
+        2. `FASTQC` :  Runs fastqc for quality check<br/>
+        3. `Sickle` : Trimms the reads based on quality and length of reads,[Deafult q = 25  and length (-l)=45.<br/>
+        4. `FASTQC` : Quality check, Post sickle Processing<br/>
+        5. `HISAT2` : Mapping reads to reference.<br/>
+        6. `htseq-count` : Count reads/fragments corresponding to features in GTF file.<br/>
 
 It also perform some additional steps like,<br/>
-        (1 Ensures that files generated following a process are correct.<br/>
-        (2 SAM -> BAM conversions and sorting of BAM files<br/>
+        1. Ensures that files generated following a process are correct.<br/>
+        2. SAM -> BAM conversions and sorting of BAM files<br/>
 
 
 ### Directory structure required by the script

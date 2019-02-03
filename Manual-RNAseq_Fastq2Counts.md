@@ -2,8 +2,12 @@
 
 ### Script Usage (Xanadu Cluster)
 
-help file : `sh RNAseq_Fastq2Counts.sh -h`
-
+**help file ** 
+```sh 
+          sh RNAseq_Fastq2Counts.sh -h
+or
+          ./RNAseq_Fastq2Counts.sh -h
+```
 **Syntax**<br/>
 ```sh
           sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse>

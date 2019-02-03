@@ -13,16 +13,14 @@ or
           sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse>
 ```
 <br/>
-
+**OPTIONS**<br/>
+                -s SampleName Please read the the project directory set up below<br/>
+                -p Absolute Path to the project directory<br/>
+                -m human or mouse : At presesent the script supports only these two. For any other species set IndexPath variable in script<br/>
+                
 *If the script fails due to errors, please check the cluster error/output files and also ProjectDirectory/logs/sample_log_trace file for errors*.<br/>
 *After correcting for error resubmit the script and it should run from the step where it failed then from the start .* <br/>
 <br/>
-
-**OPTIONS**<br/>
-                -s SampleName Please read the the project directory set up below
-                -p Absolute Path to the project directory
-                -m human or mouse : At presesent the script supports only these two. For any other species set IndexPath variable in script
-
 
 ### Script Purpose
 The script takes fastq files and outputs the counts file.  The steps are listed below<br/>

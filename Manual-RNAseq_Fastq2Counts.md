@@ -6,6 +6,10 @@ help file : `sh RNAseq_Fastq2Counts.sh -h`
 
 **Syntax**<br/>
          ` sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse>`
+<br/>
+*If the script fails due to errors, please check the cluster error/output files and also ProjectDirectory/logs/sample_log_trace file for errors*.<br/>
+*After correcting for error resubmit the script and it should run from the step where it failed then from the start .* <br/>
+<br/>
 
 **OPTIONS**<br/>
                 -s SampleName Please read the the project directory set up below

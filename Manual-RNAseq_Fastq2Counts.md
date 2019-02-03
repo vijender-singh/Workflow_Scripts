@@ -2,7 +2,7 @@
 
 ### Script Usage (Xanadu Cluster)
 
-**help file ** 
+**help file** 
 ```sh 
           sh RNAseq_Fastq2Counts.sh -h
 or

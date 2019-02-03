@@ -5,7 +5,7 @@
 help file : `sh RNAseq_Fastq2Counts.sh -h`
 
 **Syntax**
-        sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse>
+         ` sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse>`
 
 **OPTIONS**
                 -s SampleName Please read the the project directory set up below

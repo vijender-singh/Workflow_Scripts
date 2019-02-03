@@ -2,8 +2,8 @@
 #!/bin/bash
 #SBATCH -J RNAseq
 #SBATCH -c 8
-#SBATCH -p himem
-#SBATCH --qos=himem
+#SBATCH -p xeon
+#SBATCH --qos=general
 #SBATCH --mem=100G
 #SBATCH -o %x-%j.out
 

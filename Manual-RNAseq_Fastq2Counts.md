@@ -5,7 +5,9 @@
 help file : `sh RNAseq_Fastq2Counts.sh -h`
 
 **Syntax**<br/>
-         ` sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse>`
+```sh
+          sbatch RNAseq_Fastq2Counts.sh -s <SampleName> -p <Path/to/project directory> -m <human|mouse>
+```
 <br/>
 
 *If the script fails due to errors, please check the cluster error/output files and also ProjectDirectory/logs/sample_log_trace file for errors*.<br/>

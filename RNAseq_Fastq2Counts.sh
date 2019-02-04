@@ -97,7 +97,7 @@ else
  	exit 1
 fi
 
-if [ ! -d ${ProjectDir} ]; then
+if [ ! -d ${ProjectDir}/logs]; then
         mkdir -p ${ProjectDir}/logs
 fi
 

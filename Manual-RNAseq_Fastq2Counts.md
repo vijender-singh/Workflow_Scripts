@@ -41,7 +41,7 @@ It also perform some additional steps like,<br/>
 
 ProjectDirectory is the main directory, inside which the script expects a `raw_data` directory.  The `raw_data` should have `sample` directories containing fastq files.<br/>
 <br/>
-Note: fastq files for each samples should be ina different directory. Names of `sample` directories will be included in output files.  Please name them appropriately so that the results are  distingushable from each other.<br/>
+Note: fastq files for each samples should be in different directories. Names of `sample` directories will be included in output files.  Please name them appropriately so that the results are  distingushable from each other.<br/>
 
 
 ### Output

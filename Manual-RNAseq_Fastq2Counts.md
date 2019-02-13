@@ -25,7 +25,7 @@ or
 
 ### Script Purpose
 The script takes fastq files and outputs the counts file.  The steps are listed below<br/>
-        1. Merging fastq files. Only executes if the **R1** read files are split into 4 based on lanes (L001, L002, L003 and L004)<br/>
+        1. Merging fastq files. Only executes if the **R1** and **R2**read files are split into 4 based on lanes (L001, L002, L003 and L004)<br/>
         2. `FASTQC` :  Runs fastqc for quality check<br/>
         3. `Sickle` : Trimms the reads based on quality and length of reads,[Deafult q = 25  and length (-l)=45.<br/>
         4. `FASTQC` : Quality check, Post sickle Processing<br/>

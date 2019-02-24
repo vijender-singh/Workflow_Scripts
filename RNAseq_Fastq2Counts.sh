@@ -444,16 +444,4 @@ echo " ANALYSIS COMPLETED" >> ${ProjectDir}/logs/${sample}_OUT
 echo "" >> ${ProjectDir}/logs/${sample}_OUT
 echo "" >> ${ProjectDir}/logs/${sample}_OUT
 
-echo " IMPORTANT :  READ CAREFULLY :  YOUR LIFE DEPENDS ON IT " >> ${ProjectDir}/logs/${sample}_OUT
-echo "==========================================================================" >> ${ProjectDir}/logs/${sample}_OUT
-echo "I don't know who you are. I don't know what you are analysing." >> ${ProjectDir}/logs/${sample}_OUT
-echo "If you're looking for freebee's,I can tell you I don't have those... " >> ${ProjectDir}/logs/${sample}_OUT
-echo "but what I do have are a very particular set of skills. Skills I have acquired" >> ${ProjectDir}/logs/${sample}_OUT
-echo "over a very long career. Skills that make me a nightmare for people who want freebees." >> ${ProjectDir}/logs/${sample}_OUT
-echo "If you acknowledge my hard work for this script, that will be the end of it - " >> ${ProjectDir}/logs/${sample}_OUT
-echo "I will not look for you, I will not pursue you... but if you don't, I will look for you," >> ${ProjectDir}/logs/${sample}_OUT
-echo "I will find you... and I will mess you up." >> ${ProjectDir}/logs/${sample}_OUT
-echo "" >> ${ProjectDir}/logs/${sample}_OUT
-echo "30-JAN-2009, TAKEN : French action thriller film , Morel P. et. al.,:25mil:226.8mil " >> ${ProjectDir}/logs/${sample}_OUT
-echo "==========================================================================" >> ${ProjectDir}/logs/${sample}_OUT
-echo "just kidding : Modified from above source" >> ${ProjectDir}/logs/${sample}_OUT
+

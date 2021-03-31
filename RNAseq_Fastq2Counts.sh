@@ -84,6 +84,8 @@ hostname
 
 echo "SampleID :  ${sample}"
 
+#Paths below are specific to Xanadu cluster and can be changed to users need.
+# Future development:  Make it more flexible and source through a config file.
 
 if [ $model == human ];then
  	IndexPath="/isg/shared/databases/alignerIndex/animal/hg19_ucsc/hg19_HISAT2/"
